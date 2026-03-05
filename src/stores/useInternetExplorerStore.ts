@@ -13,10 +13,8 @@ export interface Favorite {
 
 // Define a constant for domains that bypass the proxy when in "now" mode
 export const DIRECT_PASSTHROUGH_DOMAINS = [
-  "baby-cursor.ryo.lu",
-  "os.ryo.lu",
-  "hcsimulator.com",
-  "os.rocorgi.wang",
+
+  "mark-murphy.me",
 ];
 
 export interface HistoryEntry {
@@ -105,6 +103,20 @@ export const DEFAULT_TIMELINE: { [year: string]: string } = {
 
 export const DEFAULT_FAVORITES: Favorite[] = [
   {
+    title: "Home",
+    url: "https://www.mark-murphy.me",
+    favicon: "https://www.google.com/s2/favicons?domain=mark-murphy.me&sz=32",
+    year: "current",
+    isDirectory: false,
+  },
+  {
+    title: "Google",
+    url: "https://google.com",
+    favicon: "https://www.google.com/s2/favicons?domain=google.com&sz=32",
+    year: "1999",
+    isDirectory: false,
+  },
+  {
     title: "Apple",
     url: "https://apple.com",
     favicon: "https://www.google.com/s2/favicons?domain=apple.com&sz=32",
@@ -112,153 +124,39 @@ export const DEFAULT_FAVORITES: Favorite[] = [
     isDirectory: false,
   },
   {
-    title: "Ryo",
-    url: "https://ryo.lu",
-    favicon: "https://www.google.com/s2/favicons?domain=ryo.lu&sz=32",
+    title: "Wikipedia",
+    url: "https://en.wikipedia.org/wiki",
+    favicon:
+      "https://www.google.com/s2/favicons?domain=en.wikipedia.org&sz=32",
     year: "current",
     isDirectory: false,
   },
+  
   {
-    title: "NewJeans",
-    url: "https://newjeans.jp",
-    favicon: "https://www.google.com/s2/favicons?domain=newjeans.jp&sz=32",
-    year: "current",
+    title: "BBC News",
+    url: "https://bbc.co.uk/news",
+    favicon: "https://www.google.com/s2/favicons?domain=bbc.co.uk&sz=32",
+    year: "1999",
     isDirectory: false,
   },
-  {
-    title: "Friends",
-    isDirectory: true, // Mark as directory
-    children: [
-      {
-        title: "Ian",
-        url: "https://shaoruu.io",
-        favicon: "https://www.google.com/s2/favicons?domain=shaoruu.io&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Long",
-        url: "https://os.rocorgi.wang",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=os.rocorgi.wang&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Maya",
-        url: "https://mayabakir.com",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=mayabakir.com&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Modi",
-        url: "https://www.akm.io",
-        favicon: "https://www.google.com/s2/favicons?domain=www.akm.io&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Sam",
-        url: "https://www.samuelcatania.com",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=www.samuelcatania.com&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Stephen",
-        url: "https://wustep.me",
-        favicon: "https://www.google.com/s2/favicons?domain=wustep.me&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Theo",
-        url: "https://tmb.sh",
-        favicon: "https://www.google.com/s2/favicons?domain=tmb.sh&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Tyler",
-        url: "https://tyler.cafe",
-        favicon: "https://www.google.com/s2/favicons?domain=tyler.cafe&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Andrew",
-        url: "https://www.andrewl.ee",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=www.andrewl.ee&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Ekin",
-        url: "https://www.ekinoflazer.com",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=www.ekinoflazer.com&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Lucas",
-        url: "https://www.lucasn.com",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=www.lucasn.com&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-    ],
-  },
-  // Work Folder
-  {
-    title: "Work",
-    isDirectory: true, // Mark as directory
-    children: [
-      {
-        title: "Cursor",
-        url: "https://cursor.sh",
-        favicon: "https://www.google.com/s2/favicons?domain=cursor.com&sz=32",
-        year: "1992",
-        isDirectory: false,
-      },
-      {
-        title: "Notion",
-        url: "https://notion.com",
-        favicon: "https://www.google.com/s2/favicons?domain=notion.com&sz=32",
-        year: "1800",
-        isDirectory: false,
-      },
-      {
-        title: "Stripe",
-        url: "https://stripe.com",
-        favicon: "https://www.google.com/s2/favicons?domain=stripe.com&sz=32",
-        year: "2018",
-        isDirectory: false,
-      },
-    ],
-  },
+  
   // Tools Folder
   {
     title: "Tools",
     isDirectory: true, // Mark as directory
     children: [
       {
-        title: "Baby Cursor",
-        url: "https://baby-cursor.ryo.lu",
-        favicon: "https://www.google.com/s2/favicons?domain=ryo.lu&sz=32",
+        title: "Cursor",
+        url: "https://cursor.ai",
+        favicon: "https://www.google.com/s2/favicons?domain=cursor.com&sz=32",
         year: "current",
         isDirectory: false,
       },
       {
-        title: "HyperCards",
-        url: "https://hcsimulator.com",
+        title: "Figma",
+        url: "https://figma.com",
         favicon:
-          "https://www.google.com/s2/favicons?domain=hcsimulator.com&sz=32",
+          "https://www.google.com/s2/favicons?domain=figma.com&sz=32",
         year: "current",
         isDirectory: false,
       },
@@ -306,21 +204,8 @@ export const DEFAULT_FAVORITES: Favorite[] = [
         year: "current",
         isDirectory: false,
       },
-      {
-        title: "Wikipedia",
-        url: "https://en.wikipedia.org/wiki",
-        favicon:
-          "https://www.google.com/s2/favicons?domain=en.wikipedia.org&sz=32",
-        year: "current",
-        isDirectory: false,
-      },
-      {
-        title: "Google",
-        url: "https://google.com",
-        favicon: "https://www.google.com/s2/favicons?domain=google.com&sz=32",
-        year: "1999",
-        isDirectory: false,
-      },
+      
+      
       {
         title: "Space Jam",
         url: "https://www.spacejam.com/index.cgi",
