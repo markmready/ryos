@@ -158,7 +158,7 @@ const getErrorMessage = (error: Error): string => {
         if (errorData.isAuthenticated) {
           return `Daily AI message limit reached.`;
         } else {
-          return `Login to continue chatting with Mark.`;
+          return `Login to continue chatting with Ryo.`;
         }
       }
 
@@ -606,7 +606,7 @@ function ChatMessagesContent({
         
         // Check for aquarium token in chat room messages
         // In chat rooms, messages from ryo don't have a role, just a username
-        if ((message.role === "human" || message.username === "mark") && hasAquariumToken) {
+        if ((message.role === "human" || message.username === "ryo") && hasAquariumToken) {
           hasAquarium = true;
         }
 
@@ -709,10 +709,10 @@ function ChatMessagesContent({
               <span
                 className="max-w-[120px] inline-block overflow-hidden text-ellipsis whitespace-nowrap"
                 title={
-                  message.username || (message.role === "user" ? "You" : "Mark")
+                  message.username || (message.role === "user" ? "You" : "Ryo")
                 }
               >
-                {message.username || (message.role === "user" ? "You" : "Mark")}
+                {message.username || (message.role === "user" ? "You" : "Ryo")}
               </span>{" "}
               <span className="text-gray-400 select-text">
                 {message.createdAt ? (
@@ -1275,13 +1275,13 @@ function ChatMessagesContent({
           // Check if it's a rate limit error that's handled elsewhere
           const isRateLimitError =
             errorMessage === "Daily AI message limit reached." ||
-            errorMessage === "Set a username to continue chatting with Mark.";
+            errorMessage === "Set a username to continue chatting with Ryo.";
 
           // Don't show these errors in chat since they're handled by other UI
           if (isRateLimitError) return null;
 
           // Special handling for login message - render in gray like "Start a new conversation?"
-          if (errorMessage === "Login to continue chatting with Mark.") {
+          if (errorMessage === "Login to continue chatting with Ryo.") {
             return (
               <motion.div
                 layout="position"

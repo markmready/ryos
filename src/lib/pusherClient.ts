@@ -6,8 +6,8 @@ const globalWithPusher = globalThis as typeof globalThis & {
   __pusherClient?: Pusher;
 };
 
-const PUSHER_APP_KEY = "73bce2125a370e1b58d6";
-const PUSHER_CLUSTER = "ap4";
+const PUSHER_APP_KEY = "b47fd563805c8c42da1a";
+const PUSHER_CLUSTER = "us3";
 
 export function getPusherClient(): Pusher {
   if (!globalWithPusher.__pusherClient) {

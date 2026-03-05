@@ -23,7 +23,7 @@ import {
   type ChatRoom,
 } from "@/types/chat";
 import { Button } from "@/components/ui/button";
-import { useMarkChat } from "../hooks/useMarkChat";
+import { useRyoChat } from "../hooks/useRyoChat";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getPrivateRoomDisplayName } from "@/utils/chat";
@@ -171,9 +171,9 @@ export function ChatsAppComponent({
     displayNames.join(", ") +
     (remainingCount > 0 ? `, ${remainingCount}+` : "");
 
-  // Use the @mark chat hook
-  const { isRyoLoading, stopMark, handleMarkMention, detectAndProcessMention } =
-    useMarkChat({
+  // Use the @ryo chat hook
+  const { isRyoLoading, stopRyo, handleRyoMention, detectAndProcessMention } =
+    useRyoChat({
       currentRoomId,
       onScrollToBottom: () => setScrollToBottomTrigger((prev) => prev + 1),
       roomMessages: currentRoomMessages?.map((msg: AppChatMessage) => ({
@@ -236,7 +236,7 @@ export function ChatsAppComponent({
           sendRoomMessage(input);
 
           // Then send to AI (doesn't affect input clearing)
-          handleMarkMention(messageContent);
+          handleRyoMention(messageContent);
 
           // Trigger scroll
           setScrollToBottomTrigger((prev) => prev + 1);
@@ -263,7 +263,7 @@ export function ChatsAppComponent({
       handleAiSubmit,
       input,
       handleInputChange,
-      handleMarkMention,
+      handleRyoMention,
       detectAndProcessMention,
     ]
   );
@@ -287,11 +287,11 @@ export function ChatsAppComponent({
     setScrollToBottomTrigger((prev) => prev + 1);
   }, [handleNudge]);
 
-  // Combined stop function for both AI chat and @mark mentions
+  // Combined stop function for both AI chat and @ryo mentions
   const handleStop = useCallback(() => {
     stop(); // Stop regular AI chat
-    stopMark(); // Stop @mark chat
-  }, [stop, stopMark]);
+    stopRyo(); // Stop @ryo chat
+  }, [stop, stopRyo]);
 
   // Font size handlers using store action
   const handleIncreaseFontSize = useCallback(() => {
@@ -500,7 +500,7 @@ export function ChatsAppComponent({
         ...msg,
         // Ensure createdAt is a Date object if it exists, otherwise undefined
         createdAt: msg.createdAt ? new Date(msg.createdAt) : undefined,
-        username: msg.role === "user" ? username || "You" : "Mark",
+        username: msg.role === "user" ? username || "You" : "Ryo",
       }));
 
   return (
@@ -512,7 +512,7 @@ export function ChatsAppComponent({
             ? currentRoom.type === "private"
               ? getPrivateRoomDisplayName(currentRoom, username)
               : `#${currentRoom.name}`
-            : "@mark"
+            : "@ryo"
         }
         onClose={onClose}
         isForeground={isForeground}
@@ -658,7 +658,7 @@ export function ChatsAppComponent({
                         ? currentRoom.type === "private"
                           ? getPrivateRoomDisplayName(currentRoom, username)
                           : `#${currentRoom.name}`
-                        : "@mark"}
+                        : "@ryo"}
                     </h2>
                     <ChevronDown className="h-3 w-3 transform transition-transform duration-200 text-neutral-400" />
                   </Button>
@@ -680,7 +680,7 @@ export function ChatsAppComponent({
                       className="flex items-center gap-1 px-2 py-1 h-7"
                     >
                       <span className="font-geneva-12 text-[11px] text-orange-600 hover:text-orange-700">
-                        Login to markOS
+                        Login to ryOS
                       </span>
                     </Button>
                   )}

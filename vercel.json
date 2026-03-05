@@ -6,7 +6,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://markmurphy.app https://www.markmurphy.app http://localhost:5173 http://localhost:3000"
+          "value": "https://os.ryo.lu http://localhost:3000"
         }
       ]
     },

@@ -321,7 +321,7 @@ export function useAiChat(onPromptSetUsername?: () => void) {
   const [needsUsername, setNeedsUsername] = useState(false);
 
   // Prepare headers for API calls – include auth token & username when available
-  const apiHeaders: Record<string, string> | undefined = username && username.trim()
+  const apiHeaders: Record<string, string> | undefined = username
     ? {
         "X-Username": username,
         ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
@@ -1106,13 +1106,10 @@ export function useAiChat(onPromptSetUsername?: () => void) {
             }
 
             // Handle authentication failed error
-            // Only treat as auth error if user actually tried to authenticate (has username)
             if (
-              username && username.trim() && (
-                errorData.error === "authentication_failed" ||
-                errorData.error === "unauthorized" ||
-                errorData.error === "username mismatch"
-              )
+              errorData.error === "authentication_failed" ||
+              errorData.error === "unauthorized" ||
+              errorData.error === "username mismatch"
             ) {
               handleAuthError("Your session has expired. Please login again.");
               return; // Exit early to prevent showing generic error toast
@@ -1145,17 +1142,14 @@ export function useAiChat(onPromptSetUsername?: () => void) {
 
         // Check if error message contains 401 status (authentication error)
         // This catches various 401 error formats
-        // Only treat as auth error if user actually tried to authenticate (has username)
         if (
-          username && username.trim() && (
-            err.message.includes("401") ||
-            err.message.includes("Unauthorized") ||
-            err.message.includes("unauthorized") ||
-            err.message.includes("authentication_failed") ||
-            err.message.includes("Authentication failed") ||
-            err.message.includes("username mismatch") ||
-            err.message.includes("Username mismatch")
-          )
+          err.message.includes("401") ||
+          err.message.includes("Unauthorized") ||
+          err.message.includes("unauthorized") ||
+          err.message.includes("authentication_failed") ||
+          err.message.includes("Authentication failed") ||
+          err.message.includes("username mismatch") ||
+          err.message.includes("Username mismatch")
         ) {
           handleAuthError();
           return;
@@ -1361,7 +1355,7 @@ export function useAiChat(onPromptSetUsername?: () => void) {
     const initialMessage: Message = {
       id: "1", // Ensure consistent ID for the initial message
       role: "assistant",
-      content: "👋 hey! i'm mark, ask me anything!",
+      content: "👋 hey! i'm ryo. ask me anything!",
       createdAt: new Date(),
     };
     speechProgressRef.current[initialMessage.id] =
@@ -1414,7 +1408,7 @@ export function useAiChat(onPromptSetUsername?: () => void) {
                 minute: "2-digit",
               })
             : "";
-          const sender = msg.role === "user" ? username || "You" : "Mark";
+          const sender = msg.role === "user" ? username || "You" : "Ryo";
           return `**${sender}** (${time}):\n${msg.content}`;
         })
         .join("\n\n");

@@ -13,7 +13,7 @@ export const TERMINAL_ANALYTICS = {
 
 export const aiCommand: Command = {
   name: "ai",
-  description: "Enter AI chat mode with mark",
+  description: "Enter AI chat mode with ryo",
   usage: "ai [initial prompt]",
   handler: (args: string[]): CommandResult => {
     // Get terminal store instance
@@ -31,7 +31,7 @@ export const aiCommand: Command = {
       {
         id: "system",
         role: "system",
-        content: "You are a coding assistant running in the terminal app on markOS.",
+        content: "You are a coding assistant running in the terminal app on ryOS.",
       },
     ]);
     
@@ -46,13 +46,13 @@ export const aiCommand: Command = {
       terminalStore.setInitialAiPrompt(initialPrompt);
       
       return {
-        output: `ask mark anything. type 'exit' to return to terminal.\n→ from your command: ${initialPrompt}`,
+        output: `ask ryo anything. type 'exit' to return to terminal.\n→ from your command: ${initialPrompt}`,
         isError: false,
       };
     }
     
     return {
-      output: `ask mark anything. type 'exit' to return to terminal.`,
+      output: `ask ryo anything. type 'exit' to return to terminal.`,
       isError: false,
     };
   },
@@ -67,9 +67,4 @@ export const chatCommand: Command = {
 export const ryoCommand: Command = {
   ...aiCommand,
   name: "ryo",
-};
-
-export const markCommand: Command = {
-  ...aiCommand,
-  name: "mark",
 };

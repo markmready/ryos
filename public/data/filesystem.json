@@ -86,7 +86,6 @@
     {
       "path": "/Images/steve-jobs.png",
       "name": "steve-jobs.png",
-      "uuid": "steve-jobs-png-uuid",
       "isDirectory": false,
       "type": "png",
       "icon": "/icons/default/image.png",
@@ -96,7 +95,6 @@
     {
       "path": "/Images/susan-kare.png",
       "name": "susan-kare.png",
-      "uuid": "susan-kare-png-uuid",
       "isDirectory": false,
       "type": "png",
       "icon": "/icons/default/image.png",

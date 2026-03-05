@@ -6,7 +6,7 @@ import {
   getModelInstance,
 } from "./utils/aiModels";
 import {
-  MARK_PERSONA_INSTRUCTIONS,
+  RYO_PERSONA_INSTRUCTIONS,
   ANSWER_STYLE_INSTRUCTIONS,
   CODE_GENERATION_INSTRUCTIONS,
   CHAT_INSTRUCTIONS,
@@ -128,13 +128,7 @@ interface SystemState {
 }
 
 // Allowed origins for API requests
-const ALLOWED_ORIGINS = new Set([
-  "https://os.ryo.lu", 
-  "https://markmurphy.app", 
-  "https://www.markmurphy.app", 
-  "http://localhost:3000", 
-  "http://localhost:5173"
-]);
+const ALLOWED_ORIGINS = new Set(["https://os.ryo.lu", "http://localhost:3000"]);
 
 // Function to validate request origin
 // Only allow explicit origins defined in ALLOWED_ORIGINS – no wildcard ports or IP fallbacks
@@ -155,7 +149,7 @@ export const config = {
 // Unified static prompt with all instructions
 const STATIC_SYSTEM_PROMPT = [
   ANSWER_STYLE_INSTRUCTIONS,
-  MARK_PERSONA_INSTRUCTIONS,
+  RYO_PERSONA_INSTRUCTIONS,
   CHAT_INSTRUCTIONS,
   TOOL_USAGE_INSTRUCTIONS,
   CODE_GENERATION_INSTRUCTIONS,
@@ -388,13 +382,7 @@ async function validateAuthToken(
   username: string | undefined | null,
   authToken: string | undefined | null
 ): Promise<{ valid: boolean; newToken?: string }> {
-  // If no username provided, allow anonymous access
-  if (!username) {
-    return { valid: true };
-  }
-  
-  // If username provided but no token, invalid
-  if (!authToken) {
+  if (!username || !authToken) {
     return { valid: false };
   }
 

@@ -17,21 +17,21 @@ export const getModelInstance = (model: SupportedModel): LanguageModelV1 => {
     case "gpt-4o":
       return openai("gpt-4o");
     case "gpt-4.1":
-      return openai("gpt-4");
+      return openai("gpt-4.1");
     case "gpt-4.1-mini":
-      return openai("gpt-4o-mini");
+      return openai("gpt-4.1-mini");
     case "gemini-2.5-flash":
       return google("gemini-2.5-flash");
     case "gemini-2.5-pro":
       return google("gemini-2.5-pro");
     case "claude-4":
-      return anthropic("claude-3-5-sonnet-20241022");
+      return anthropic("claude-4-sonnet-20250514");
     case "claude-3.7":
-      return anthropic("claude-3-5-sonnet-20241022");
+      return anthropic("claude-3-7-sonnet-20250219");
     case "claude-3.5":
       return anthropic("claude-3-5-sonnet-20241022");
     default:
       // Fallback – should never happen due to exhaustive switch
-      return openai("gpt-4");
+      return openai("gpt-4.1");
   }
 }; 

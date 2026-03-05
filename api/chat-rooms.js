@@ -1402,7 +1402,7 @@ async function handleCreateRoom(data, username, requestId) {
       return createErrorResponse("Room name is required for public rooms", 400);
     }
 
-    if (normalizedUsername !== "mark") {
+    if (normalizedUsername !== "ryo") {
       logInfo(requestId, `Unauthorized: User ${username} is not the admin`);
       return createErrorResponse(
         "Forbidden - Only admin can create public rooms",
@@ -2210,7 +2210,7 @@ async function handleClearAllMessages(username, requestId) {
   logInfo(requestId, "Clearing all chat messages from all rooms");
 
   // Check if the user is the admin ("ryo")
-  if (username?.toLowerCase() !== "mark") {
+  if (username?.toLowerCase() !== "ryo") {
     logInfo(requestId, `Unauthorized: User ${username} is not the admin`);
     return createErrorResponse("Forbidden - Admin access required", 403);
   }
@@ -2278,7 +2278,7 @@ async function handleResetUserCounts(username, requestId) {
   logInfo(requestId, "Resetting all user counts and clearing room memberships");
 
   // Check if the user is the admin ("ryo")
-  if (username?.toLowerCase() !== "mark") {
+  if (username?.toLowerCase() !== "ryo") {
     logInfo(requestId, `Unauthorized: User ${username} is not the admin`);
     return createErrorResponse("Forbidden - Admin access required", 403);
   }
@@ -2837,7 +2837,7 @@ async function handleDeleteMessage(roomId, messageId, username, requestId) {
   }
 
   // Only admin user (ryo) can delete via this endpoint - use authenticated username
-  if (username?.toLowerCase() !== "mark") {
+  if (username?.toLowerCase() !== "ryo") {
     logInfo(
       requestId,
       `Unauthorized delete attempt by authenticated user: ${username}`

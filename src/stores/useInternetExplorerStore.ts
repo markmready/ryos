@@ -112,9 +112,9 @@ export const DEFAULT_FAVORITES: Favorite[] = [
     isDirectory: false,
   },
   {
-    title: "Mark",
-    url: "https://markmurphy.app",
-    favicon: "https://www.google.com/s2/favicons?domain=markmurphy.app&sz=32",
+    title: "Ryo",
+    url: "https://ryo.lu",
+    favicon: "https://www.google.com/s2/favicons?domain=ryo.lu&sz=32",
     year: "current",
     isDirectory: false,
   },

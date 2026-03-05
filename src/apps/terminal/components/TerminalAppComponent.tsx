@@ -456,12 +456,10 @@ export function TerminalAppComponent({
   // Initialize with welcome message
   useEffect(() => {
     const currentTime = new Date().toLocaleTimeString();
-    const asciiArt = `                      __   ___  _____ 
- _ __ ___   __ _ _ __ | | _/ _ \\/ ____|
-| '_ \` _ \\ / _\` | '__|| |/ / | |\\___ \\
-| | | | | | (_| | |  |   <| |_| |___) |
-|_| |_| |_|\\__,_|_|  |_|\\_\\\\___/|____/
-                                     `;
+    const asciiArt = `     __  __ 
+ _  /  \\(_  
+| \\/\\__/__) 
+  /         `;
 
     setCommandHistory([
       {
@@ -1305,17 +1303,16 @@ export function TerminalAppComponent({
           historyCommands[historyCommands.length - 1 - newIndex] || "";
 
         // If we're not in AI mode and the historic command was from AI mode
-        // (doesn't start with 'mark'/'ryo' and was saved with 'mark'/'ryo' prefix)
+        // (doesn't start with 'ryo' and was saved with 'ryo' prefix)
         const savedCommands = useTerminalStore.getState().commandHistory;
         const commandEntry = savedCommands[savedCommands.length - 1 - newIndex];
         if (
           !isInAiMode &&
           commandEntry &&
-          (commandEntry.command.startsWith("ryo ") || commandEntry.command.startsWith("mark ")) &&
-          !historicCommand.startsWith("ryo ") && !historicCommand.startsWith("mark ")
+          commandEntry.command.startsWith("ryo ") &&
+          !historicCommand.startsWith("ryo ")
         ) {
-          const prefix = commandEntry.command.startsWith("mark ") ? "mark " : "ryo ";
-          setCurrentCommand(prefix + historicCommand);
+          setCurrentCommand("ryo " + historicCommand);
         } else {
           setCurrentCommand(historicCommand);
         }
@@ -1335,11 +1332,10 @@ export function TerminalAppComponent({
         if (
           !isInAiMode &&
           commandEntry &&
-          (commandEntry.command.startsWith("ryo ") || commandEntry.command.startsWith("mark ")) &&
-          !historicCommand.startsWith("ryo ") && !historicCommand.startsWith("mark ")
+          commandEntry.command.startsWith("ryo ") &&
+          !historicCommand.startsWith("ryo ")
         ) {
-          const prefix = commandEntry.command.startsWith("mark ") ? "mark " : "ryo ";
-          setCurrentCommand(prefix + historicCommand);
+          setCurrentCommand("ryo " + historicCommand);
         } else {
           setCurrentCommand(historicCommand);
         }
@@ -2072,7 +2068,7 @@ export function TerminalAppComponent({
     // Store in Zustand (including AI commands)
     useTerminalStore
       .getState()
-      .addCommand(command.startsWith("mark ") || command.startsWith("ryo ") ? command : `mark ${command}`);
+      .addCommand(command.startsWith("ryo ") ? command : `ryo ${command}`);
 
     // Reset animated lines to ensure only new content gets animated
     setAnimatedLines(new Set());
@@ -2087,7 +2083,7 @@ export function TerminalAppComponent({
           id: "system",
           role: "system",
           content:
-            "You are a coding assistant running in the terminal app on markOS.",
+            "You are a coding assistant running in the terminal app on ryOS.",
         },
       ]);
 
@@ -2121,7 +2117,7 @@ export function TerminalAppComponent({
           id: "system",
           role: "system",
           content:
-            "You are a coding assistant running in the terminal app on markOS.",
+            "You are a coding assistant running in the terminal app on ryOS.",
         },
       ]);
 
@@ -2144,7 +2140,7 @@ export function TerminalAppComponent({
           {
             command: "",
             output:
-              "chat cleared. you're still chatting with mark. type 'exit' to return to terminal.",
+              "chat cleared. you're still chatting with ryo. type 'exit' to return to terminal.",
             path: "ai-assistant",
           },
         ]);
@@ -2380,7 +2376,7 @@ export function TerminalAppComponent({
         !item.output.startsWith("command not found") &&
         !item.output.includes("commands") &&
         !item.output.includes("     __  __") &&
-        !item.output.includes("ask mark anything.") &&
+        !item.output.includes("ask ryo anything.") &&
         // Don't animate ls command output
         !(item.command && item.command.trim().startsWith("ls"))
       ) {
@@ -2527,7 +2523,7 @@ export function TerminalAppComponent({
                   {item.path === "ai-user" ? (
                     <span className="text-purple-400 mr-2 select-text cursor-text">
                       <span className="inline-block w-2 text-center">→</span>{" "}
-                      mark
+                      ryo
                     </span>
                   ) : (
                     <span className="text-green-400 mr-2 select-text cursor-text">
@@ -2551,7 +2547,7 @@ export function TerminalAppComponent({
                     isUrgentMessage(item.output) ? "text-red-400" : ""
                   } ${
                     // Add system message styling
-                    item.output.startsWith("ask mark anything") ||
+                    item.output.startsWith("ask ryo anything") ||
                     item.output.startsWith("usage:") ||
                     item.output.startsWith("command not found:") ||
                     item.output.includes("type 'help' for") ||
@@ -2570,7 +2566,7 @@ export function TerminalAppComponent({
                         <span className="inline-block w-2 text-center">
                           {item.output.split(" ")[0]}
                         </span>{" "}
-                        mark
+                        ryo
                       </span>
                       <span className="text-gray-500 italic shimmer-subtle">
                         {" is thinking"}
@@ -2730,12 +2726,12 @@ export function TerminalAppComponent({
                       <span className="inline-block w-2 text-center">
                         {spinnerChars[spinnerIndex]}
                       </span>{" "}
-                      mark
+                      ryo
                     </span>
                   </span>
                 ) : (
                   <>
-                    <span className="inline-block w-2 text-center">→</span> mark
+                    <span className="inline-block w-2 text-center">→</span> ryo
                   </>
                 )}
               </span>

@@ -241,7 +241,7 @@ export interface ChatsStoreState {
 const initialAiMessage: Message = {
   id: "1",
   role: "assistant",
-  content: "👋 hey! i'm mark. ask me anything!",
+  content: "👋 hey! i'm ryo. ask me anything!",
   createdAt: new Date(),
 };
 

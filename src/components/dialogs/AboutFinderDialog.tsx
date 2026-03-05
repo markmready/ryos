@@ -82,7 +82,7 @@ export function AboutFinderDialog({
                     : "font-apple-garamond text-2xl"
                 )}
               >
-                markOS
+                ryOS
                 {currentTheme === "system7"
                   ? " 7"
                   : currentTheme === "macosx"
@@ -203,7 +203,7 @@ export function AboutFinderDialog({
                 About This Computer
               </DialogTitle>
               <DialogDescription className="sr-only">
-                Information about markOS on this computer
+                Information about ryOS on this computer
               </DialogDescription>
             </DialogHeader>
             {dialogContent}

@@ -5,7 +5,7 @@ import { SupportedModel, DEFAULT_MODEL, getModelInstance } from "./utils/aiModel
 import { Redis } from "@upstash/redis";
 import { normalizeUrlForCacheKey } from "./utils/url";
 import {
-  MARK_PERSONA_INSTRUCTIONS,
+  RYO_PERSONA_INSTRUCTIONS,
   DELIVERABLE_REQUIREMENTS,
 } from "./utils/aiPrompts";
 import { SUPPORTED_AI_MODELS } from "../src/types/aiModels";
@@ -99,8 +99,8 @@ const getDynamicSystemPrompt = (
 
   const YEAR_NOT_SPECIFIED_INSTRUCTIONS = `Year not specified. Assume current year ${currentYear}.`;
 
-  const PERSONA_INSTRUCTIONS_BLOCK = `ABOUT THE DESIGNER (MARK MURPHY):
-${MARK_PERSONA_INSTRUCTIONS}`;
+  const PERSONA_INSTRUCTIONS_BLOCK = `ABOUT THE DESIGNER (RYO LU):
+${RYO_PERSONA_INSTRUCTIONS}`;
 
   // --- Determine Year Specific Instructions ---
 
@@ -119,8 +119,8 @@ ${MARK_PERSONA_INSTRUCTIONS}`;
 
   let finalPrompt = `${INTRO_LINE}\n\n${yearSpecificInstructions}`;
 
-  // Conditionally add Mark's persona instructions
-  if (rawUrl && (rawUrl.includes('markmurphy.app') || rawUrl.includes('x.com') || rawUrl.includes('readytech') || rawUrl.includes('portfolio'))) {
+  // Conditionally add Ryo's persona instructions
+  if (rawUrl && (rawUrl.includes('ryo.lu') || rawUrl.includes('x.com') || rawUrl.includes('notion') || rawUrl.includes('cursor'))) {
     finalPrompt += `\n\n${PERSONA_INSTRUCTIONS_BLOCK}`;
   }
 

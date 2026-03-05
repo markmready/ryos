@@ -443,19 +443,19 @@ export function LoginDialog({
       >
         {isXpTheme ? (
           <>
-            <DialogHeader>markOS Login</DialogHeader>
+            <DialogHeader>ryOS Login</DialogHeader>
             <div className="window-body">{dialogContent}</div>
           </>
         ) : currentTheme === "macosx" ? (
           <>
-            <DialogHeader>markOS Login</DialogHeader>
+            <DialogHeader>ryOS Login</DialogHeader>
             {dialogContent}
           </>
         ) : (
           <>
             <DialogHeader>
               <DialogTitle className="font-normal text-[16px]">
-                markOS Login
+                ryOS Login
               </DialogTitle>
               <DialogDescription className="sr-only">
                 {activeTab === "login"

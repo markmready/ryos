@@ -103,7 +103,7 @@ export function AppManager({ apps }: AppManagerProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Launch Internet Explorer with Mark's portfolio as the default homepage
+  // Launch Internet Explorer with portfolio homepage by default
   useEffect(() => {
     if (!isInitialMount) return;
     launchApp("internet-explorer", {
