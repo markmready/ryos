@@ -103,16 +103,15 @@ export function AppManager({ apps }: AppManagerProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Launch Internet Explorer with portfolio homepage after a short delay so user sees the desktop first (run once on mount)
+  // Launch Videos app then Internet Explorer after a short delay so user sees the desktop first; IE opens last so it stays in front
   useEffect(() => {
-    const timer = setTimeout(
-      () =>
-        launchApp("internet-explorer", {
-          url: "https://www.mark-murphy.me",
-          year: "current",
-        }),
-      1000
-    );
+    const timer = setTimeout(() => {
+      launchApp("videos");
+      launchApp("internet-explorer", {
+        url: "https://www.mark-murphy.me",
+        year: "current",
+      });
+    }, 1000);
     return () => clearTimeout(timer);
   }, [launchApp]);
 
