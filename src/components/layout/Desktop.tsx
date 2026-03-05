@@ -327,7 +327,7 @@ export function Desktop({
             size="large"
           />
           <FileIcon
-            name="Read Me"
+            name="README.TXT"
             isDirectory={false}
             icon={getAppIconPath("textedit")}
             onClick={(e) => {
