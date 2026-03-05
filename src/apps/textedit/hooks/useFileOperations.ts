@@ -17,20 +17,6 @@ import {
   DocumentContent,
 } from "@/apps/finder/hooks/useFileSystem";
 
-/** One-time migration: wrap old README ASCII art in a markdown code block so it renders in monospace */
-function migrateReadmeAsciiArt(filePath: string, contentStr: string): string {
-  if (filePath !== "/Documents/README.md") return contentStr;
-  if (contentStr.startsWith("```")) return contentStr;
-  const asciiEnd = contentStr.indexOf("\n\nMarkOS");
-  if (asciiEnd === -1 || !contentStr.startsWith("__  __")) return contentStr;
-  return (
-    "```\n" +
-    contentStr.slice(0, asciiEnd) +
-    "\n```\n\nMarkOS" +
-    contentStr.slice(asciiEnd + 8)
-  );
-}
-
 interface UseFileOperationsProps {
   editor: Editor | null;
   currentFilePath: string | null;
@@ -183,8 +169,7 @@ export function useFileOperations({
   const handleLoadFromPath = useCallback(async (path: string, content: string | undefined): Promise<void> => {
     if (!editor) return;
 
-    let contentToUse = typeof content === "string" ? content : "";
-    contentToUse = migrateReadmeAsciiArt(path, contentToUse);
+    const contentToUse = typeof content === "string" ? content : "";
     let editorContent: string | object;
 
     if (path.endsWith(".md")) {
@@ -216,8 +201,7 @@ export function useFileOperations({
         );
 
         if (doc?.content) {
-          let contentStr = await getContentAsString(doc.content);
-          contentStr = migrateReadmeAsciiArt(filePath, contentStr);
+          const contentStr = await getContentAsString(doc.content);
           let editorContent;
 
           if (filePath.endsWith(".md")) {
