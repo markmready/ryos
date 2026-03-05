@@ -103,13 +103,18 @@ export function AppManager({ apps }: AppManagerProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Launch Internet Explorer with portfolio homepage by default
+  // Launch Internet Explorer with portfolio homepage after a short delay so user sees the desktop first
   useEffect(() => {
     if (!isInitialMount) return;
-    launchApp("internet-explorer", {
-      url: "https://www.mark-murphy.me",
-      year: "current",
-    });
+    const timer = setTimeout(
+      () =>
+        launchApp("internet-explorer", {
+          url: "https://www.mark-murphy.me",
+          year: "current",
+        }),
+      1000
+    );
+    return () => clearTimeout(timer);
   }, [isInitialMount, launchApp]);
 
   // Process shared URLs and direct app launch paths
