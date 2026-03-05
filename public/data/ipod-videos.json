@@ -1,18 +1,25 @@
 {
   "videos": [
     {
-      "id": "v=uX-kf3s_6DQ",
+      "id": "uX-kf3s_6DQ",
       "url": "https://www.youtube.com/watch?v=uX-kf3s_6DQ",
       "title": "Streetcar",
       "artist": "Funeral for a friend",
       "lyricOffset": -18000
     },
     {
-      "id": "HeqsjDF7Lw0",
-      "url": "https://www.youtube.com/watch?v=HeqsjDF7Lw0",
-      "title": "時よ止まれ",
-      "artist": "ILLIT",
-      "lyricOffset": -9800
+      "id": "pVEM2vU3ohs",
+      "url": "https://www.youtube.com/watch?v=pVEM2vU3ohs",
+      "title": "Boiled Frogs",
+      "artist": "Alexisonfire",
+      "lyricOffset": -57000
+    },
+    {
+      "id": "9pyA_lSJXK4",
+      "url": "https://www.youtube.com/watch?v=9pyA_lSJXK4",
+      "title": "Stare at the sun",
+      "artist": "Thrice",
+      "lyricOffset": -22000
     },
     {
       "id": "9jXGDpIGwXA",
