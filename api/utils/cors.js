@@ -3,6 +3,8 @@
 export const ALLOWED_ORIGINS = new Set([
   "https://os.ryo.lu",
   "https://ryo.lu",
+  "https://markmurphy.app",
+  "https://www.markmurphy.app",
   "http://localhost:3000",
   "http://localhost:5173",
 ]);

@@ -128,7 +128,13 @@ interface SystemState {
 }
 
 // Allowed origins for API requests
-const ALLOWED_ORIGINS = new Set(["https://os.ryo.lu", "http://localhost:3000"]);
+const ALLOWED_ORIGINS = new Set([
+  "https://os.ryo.lu",
+  "https://markmurphy.app",
+  "https://www.markmurphy.app",
+  "http://localhost:3000",
+  "http://localhost:5173",
+]);
 
 // Function to validate request origin
 // Only allow explicit origins defined in ALLOWED_ORIGINS – no wildcard ports or IP fallbacks
