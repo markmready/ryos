@@ -139,6 +139,14 @@ export const DEFAULT_FAVORITES: Favorite[] = [
     year: "1999",
     isDirectory: false,
   },
+
+  {
+    title: "Winamp",
+    url: "https://winamp.com",
+    favicon: "https://www.google.com/s2/favicons?domain=winamp.com&sz=32",
+    year: "2005",
+    isDirectory: false,
+  },
   
   // Tools Folder
   {
