@@ -212,6 +212,17 @@ export function Desktop({
 
   const getContextMenuItems = (): MenuItem[] => {
     if (contextMenuAppId) {
+      // Read Me opens in TextEdit; other icons use handleOpenApp
+      if (contextMenuAppId === "readme-txt") {
+        return [
+          {
+            type: "item",
+            label: "Open",
+            onSelect: () =>
+              toggleApp("textedit", { path: "/Documents/README.md" }),
+          },
+        ];
+      }
       // Icon-specific context menu
       return [
         {
@@ -313,6 +324,25 @@ export function Desktop({
               handleIconContextMenu("macintosh-hd", e)
             }
             isSelected={selectedAppId === "macintosh-hd"}
+            size="large"
+          />
+          <FileIcon
+            name="Read Me"
+            isDirectory={false}
+            icon={getAppIconPath("textedit")}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedAppId("readme-txt");
+            }}
+            onDoubleClick={(e) => {
+              e.stopPropagation();
+              toggleApp("textedit", { path: "/Documents/README.md" });
+              setSelectedAppId(null);
+            }}
+            onContextMenu={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleIconContextMenu("readme-txt", e)
+            }
+            isSelected={selectedAppId === "readme-txt"}
             size="large"
           />
           {displayedApps.map((app) => (
