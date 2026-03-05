@@ -1788,6 +1788,12 @@ export function InternetExplorerAppComponent({
         handleGoBack();
       } else if (
         event.data &&
+        event.data.type === "openInNativeBrowser" &&
+        typeof event.data.url === "string"
+      ) {
+        window.open(event.data.url, "_blank", "noopener,noreferrer");
+      } else if (
+        event.data &&
         event.data.type === "aiHtmlNavigation" &&
         typeof event.data.url === "string"
       ) {

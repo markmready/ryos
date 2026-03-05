@@ -846,7 +846,18 @@ export default async function handler(req: Request) {
       event.stopPropagation();
       try {
         const absoluteUrl = new URL(targetElement.getAttribute('href'), document.baseURI || window.location.href).href;
-        window.parent.postMessage({ type: 'iframeNavigation', url: absoluteUrl }, '*');
+        var isNewTab = (targetElement.target === '_blank' || (targetElement.getAttribute('target') || '').toLowerCase() === '_blank');
+        var isModifier = event.ctrlKey || event.metaKey;
+        var pageOrigin = '';
+        try { pageOrigin = new URL(document.baseURI || window.location.href).origin; } catch(e) {}
+        var linkOrigin = '';
+        try { linkOrigin = new URL(absoluteUrl).origin; } catch(e) {}
+        var isExternal = pageOrigin && linkOrigin && pageOrigin !== linkOrigin;
+        if (isNewTab || isModifier || isExternal) {
+          window.parent.postMessage({ type: 'openInNativeBrowser', url: absoluteUrl }, '*');
+        } else {
+          window.parent.postMessage({ type: 'iframeNavigation', url: absoluteUrl }, '*');
+        }
       } catch (e) { console.error("Error resolving/posting URL:", e); }
     }
   }, true);
