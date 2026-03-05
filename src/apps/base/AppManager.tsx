@@ -103,9 +103,8 @@ export function AppManager({ apps }: AppManagerProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Launch Internet Explorer with portfolio homepage after a short delay so user sees the desktop first
+  // Launch Internet Explorer with portfolio homepage after a short delay so user sees the desktop first (run once on mount)
   useEffect(() => {
-    if (!isInitialMount) return;
     const timer = setTimeout(
       () =>
         launchApp("internet-explorer", {
@@ -115,7 +114,7 @@ export function AppManager({ apps }: AppManagerProps) {
       1000
     );
     return () => clearTimeout(timer);
-  }, [isInitialMount, launchApp]);
+  }, [launchApp]);
 
   // Process shared URLs and direct app launch paths
   useEffect(() => {
