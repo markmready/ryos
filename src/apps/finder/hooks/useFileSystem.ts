@@ -23,6 +23,12 @@ const STORES = {
   CUSTOM_WALLPAPERS: "custom_wallpapers",
 } as const;
 
+/** Materialize a Blob from IndexedDB so Safari can use it with createObjectURL / <img> (IndexedDB Blobs can be detached in Safari) */
+async function materializeBlob(blob: Blob): Promise<Blob> {
+  const buffer = await blob.arrayBuffer();
+  return new Blob([buffer], { type: blob.type || "image/png" });
+}
+
 // Export STORE names
 export { STORES };
 
@@ -721,7 +727,9 @@ export function useFileSystem(
                     console.log(
                       `[useFileSystem:loadFiles] Found Blob content for ${item.name}, creating URL`
                     );
-                    contentUrl = URL.createObjectURL(contentData.content);
+                    // Materialize for Safari: IndexedDB Blobs often don't work with createObjectURL in Safari
+                    const freshBlob = await materializeBlob(contentData.content);
+                    contentUrl = URL.createObjectURL(freshBlob);
                     console.log(
                       `[useFileSystem:loadFiles] Created URL: ${contentUrl}`
                     );
@@ -883,7 +891,7 @@ export function useFileSystem(
           }
         }
 
-        // Process content: Read blob to string for TextEdit, create URL for Paint
+        // Process content: Read blob to string for TextEdit, materialize for Paint (Safari)
         if (contentToUse instanceof Blob) {
           if (file.path.startsWith("/Documents/")) {
             contentAsString = await contentToUse.text();
@@ -891,9 +899,8 @@ export function useFileSystem(
               `[useFileSystem] Read Blob as text for ${file.name}, length: ${contentAsString?.length}`
             );
           } else if (file.path.startsWith("/Images/")) {
-            // Don't create URL here, pass the Blob itself
-            // contentUrlToUse = URL.createObjectURL(contentToUse);
-            // console.log(`[useFileSystem] Created Blob URL for ${file.name}: ${contentUrlToUse}`);
+            // Materialize Blob for Safari so createObjectURL/img work (IndexedDB Blobs can be detached)
+            contentToUse = await materializeBlob(contentToUse);
           }
         } else if (typeof contentToUse === "string") {
           contentAsString = contentToUse;
