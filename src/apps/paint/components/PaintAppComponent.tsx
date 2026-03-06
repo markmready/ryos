@@ -96,12 +96,7 @@ export const PaintAppComponent: React.FC<AppProps<PaintInitialData>> = ({
       setHasUnsavedChanges(false);
       setIsLoadingFile(false);
       setError(null);
-
-      console.log("[Paint] Revoking Blob URL after successful load:", blobUrl);
-      URL.revokeObjectURL(blobUrl);
-      if (lastConsumedBlobUrl.current === blobUrl) {
-        lastConsumedBlobUrl.current = null;
-      }
+      // Don't revoke here: PaintCanvas.importImage loads the same URL async; revoke there after draw (fixes Safari)
     };
 
     img.onerror = (error) => {
@@ -124,7 +119,11 @@ export const PaintAppComponent: React.FC<AppProps<PaintInitialData>> = ({
       console.log("[Paint] Loading content from initialData:", path);
 
       if (content instanceof Blob) {
-        const blobUrl = URL.createObjectURL(content);
+        // Clone blob for Safari: IndexedDB Blobs can be unusable with createObjectURL in Safari
+        const blob = new Blob([content], {
+          type: content.type || "image/png",
+        });
+        const blobUrl = URL.createObjectURL(blob);
         console.log("[Paint] Created Blob URL from initialData:", blobUrl);
 
         if (lastConsumedBlobUrl.current) {
