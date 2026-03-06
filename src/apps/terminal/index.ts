@@ -33,7 +33,7 @@ export const TerminalApp: BaseApp = {
       icon: "🤖",
       title: "AI Assistant",
       description:
-        'Type "ryo &lt;prompt&gt;" to chat with Ryo AI directly inside the terminal.',
+        'Type "mark &lt;prompt&gt;" to chat with Mark AI directly inside the terminal.',
     },
     {
       icon: "📝",

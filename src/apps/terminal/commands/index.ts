@@ -14,7 +14,7 @@ import { whoamiCommand } from "./whoami";
 import { dateCommand } from "./date";
 import { cowsayCommand } from "./cowsay";
 import { aboutCommand } from "./about";
-import { aiCommand, chatCommand, ryoCommand } from "./ai";
+import { aiCommand, chatCommand, markCommand } from "./ai";
 import { vimCommand } from "./vim";
 
 // Create command registry
@@ -34,7 +34,7 @@ export const commands: Record<string, Command> = {
   about: aboutCommand,
   ai: aiCommand,
   chat: chatCommand,
-  ryo: ryoCommand,
+  mark: markCommand,
   vim: vimCommand,
 };
 

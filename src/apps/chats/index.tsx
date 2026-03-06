@@ -4,9 +4,9 @@ import { ChatsAppComponent } from "./components/ChatsAppComponent";
 export const helpItems = [
   {
     icon: "💬",
-    title: "Chat with Ryo",
+    title: "Chat with Mark",
     description:
-      "Type your message to chat with Ryo, generate code, or help with ryOS.",
+      "Type your message to chat with Mark, generate code, or help with ryOS.",
   },
   {
     icon: "#️⃣",
@@ -23,19 +23,19 @@ export const helpItems = [
     icon: "📝",
     title: "Control TextEdit",
     description:
-      "Ask Ryo to read, insert, replace, or delete lines in your open TextEdit document.",
+      "Ask Mark to read, insert, replace, or delete lines in your open TextEdit document.",
   },
   {
     icon: "🚀",
     title: "Control Apps",
     description:
-      "Ask Ryo to launch or close other applications like Internet Explorer or Video Player.",
+      "Ask Mark to launch or close other applications like Internet Explorer or Video Player.",
   },
   {
     icon: "💾",
     title: "Save Transcript",
     description:
-      "Save your current chat conversation with Ryo as a Markdown file.",
+      "Save your current chat conversation with Mark as a Markdown file.",
   },
 ];
 
@@ -54,7 +54,7 @@ export const ChatsApp: BaseApp = {
   id: "chats",
   name: "Chats",
   icon: { type: "image", src: appMetadata.icon },
-  description: "Chat with Ryo, your personal AI assistant",
+  description: "Chat with Mark, your personal AI assistant",
   component: ChatsAppComponent,
   helpItems,
   metadata: appMetadata,

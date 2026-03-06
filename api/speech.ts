@@ -206,15 +206,15 @@ export default async function handler(req: Request) {
   const isAuthenticated = validationResult.valid;
   const identifier = username ? username.toLowerCase() : null;
 
-  // Check if this is ryo with valid authentication
-  const isAuthenticatedRyo = isAuthenticated && identifier === "ryo";
+  // Check if this is mark with valid authentication
+  const isAuthenticatedMark = isAuthenticated && identifier === "mark";
 
   // ---------------------------
   // Rate limiting (burst + daily)
   // ---------------------------
   try {
-    // Skip rate limiting for authenticated ryo user
-    if (!isAuthenticatedRyo) {
+    // Skip rate limiting for authenticated mark user
+    if (!isAuthenticatedMark) {
       const ip = RateLimit.getClientIp(req);
       const BURST_WINDOW = 60; // 1 minute
       const BURST_LIMIT = 10;
@@ -284,7 +284,7 @@ export default async function handler(req: Request) {
         );
       }
     } else {
-      logInfo(requestId, "Rate limit bypassed for authenticated ryo user");
+      logInfo(requestId, "Rate limit bypassed for authenticated mark user");
     }
   } catch (e) {
     // Fail open but log; do not block TTS if limiter errors

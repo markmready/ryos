@@ -56,7 +56,7 @@ interface ChatInputProps {
   previousMessages?: string[];
   /**
    * Whether to display the "nudge" (👋) button. Defaults to true so that the
-   * button is shown in the regular Ryo chat, and can be disabled for chat-room
+   * button is shown in the regular Mark chat, and can be disabled for chat-room
    * contexts where nudging is not available.
    */
   showNudgeButton?: boolean;
@@ -115,9 +115,9 @@ export function ChatInput({
   // Get the model display name for debug information
   const modelDisplayName = aiModel ? AI_MODELS[aiModel]?.name : null;
 
-  // Check if user is typing @ryo
+  // Check if user is typing @mark
   const isTypingRyoMention =
-    isInChatRoom && (input.startsWith("@ryo ") || input === "@ryo");
+    isInChatRoom && (input.startsWith("@mark ") || input === "@mark");
 
   useEffect(() => {
     // Check if device has touch capability
@@ -225,7 +225,7 @@ export function ChatInput({
   const handleMentionClick = () => {
     let newValue = input;
 
-    if (input.startsWith("@ryo ")) {
+    if (input.startsWith("@mark ")) {
       // Already properly mentioned, just focus
       inputRef.current?.focus();
       // Position cursor at the end
@@ -238,12 +238,12 @@ export function ChatInput({
         }
       }, 0);
       return;
-    } else if (input.startsWith("@ryo")) {
-      // Has @ryo but missing space
-      newValue = input.replace("@ryo", "@ryo ");
+    } else if (input.startsWith("@mark")) {
+      // Has @mark but missing space
+      newValue = input.replace("@mark", "@mark ");
     } else {
-      // Add @ryo at the beginning
-      newValue = `@ryo ${input}`.trim() + (input.endsWith(" ") ? "" : " ");
+      // Add @mark at the beginning
+      newValue = `@mark ${input}`.trim() + (input.endsWith(" ") ? "" : " ");
     }
 
     const event = {
@@ -412,14 +412,14 @@ export function ChatInput({
                                 : ""
                             }`}
                             disabled={isLoading}
-                            aria-label="Mention Ryo"
+                            aria-label="Mention Mark"
                           >
                             <AtSign className="h-4 w-4" />
                           </button>
                         </div>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Mention Ryo</p>
+                        <p>Mention Mark</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -621,7 +621,7 @@ export function ChatInput({
               className="mt-2 px-1 text-xs text-neutral-700 font-geneva-12"
             >
               {isTypingRyoMention
-                ? `Ryo will respond to this message${
+                ? `Mark will respond to this message${
                     debugMode && modelDisplayName
                       ? ` (${modelDisplayName})`
                       : ""

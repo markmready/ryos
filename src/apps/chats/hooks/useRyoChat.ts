@@ -112,7 +112,7 @@ export function useRyoChat({
     authHeaders["X-Username"] = username;
   }
 
-  // Create a separate AI chat hook for @ryo mentions in chat rooms
+  // Create a separate AI chat hook for @mark mentions in chat rooms
   const {
     messages: ryoMessages,
     isLoading: isRyoLoading,
@@ -144,7 +144,7 @@ export function useRyoChat({
         },
       };
 
-      // Call server to generate and insert a @ryo reply using authenticated request
+      // Call server to generate and insert a @mark reply using authenticated request
       const headers: HeadersInit = { "Content-Type": "application/json" };
       if (authToken && username) {
         headers["Authorization"] = `Bearer ${authToken}`;
@@ -168,12 +168,12 @@ export function useRyoChat({
 
   const detectAndProcessMention = useCallback(
     (input: string): { isMention: boolean; messageContent: string } => {
-      if (input.startsWith("@ryo ")) {
-        // Extract the message content after @ryo
-        const messageContent = input.substring(4).trim();
+      if (input.startsWith("@mark ")) {
+        // Extract the message content after @mark
+        const messageContent = input.substring(6).trim();
         return { isMention: true, messageContent };
-      } else if (input === "@ryo") {
-        // If they just typed @ryo without a message, treat it as a nudge
+      } else if (input === "@mark") {
+        // If they just typed @mark without a message, treat it as a nudge
         return { isMention: true, messageContent: "👋 *nudge sent*" };
       }
       return { isMention: false, messageContent: "" };

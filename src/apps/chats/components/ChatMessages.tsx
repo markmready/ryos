@@ -158,7 +158,7 @@ const getErrorMessage = (error: Error): string => {
         if (errorData.isAuthenticated) {
           return `Daily AI message limit reached.`;
         } else {
-          return `Login to continue chatting with Ryo.`;
+          return `Login to continue chatting with Mark.`;
         }
       }
 
@@ -225,9 +225,9 @@ interface ChatMessagesProps {
   error?: Error;
   onRetry?: () => void;
   onClear?: () => void;
-  isRoomView: boolean; // Indicates if this is a room view (vs Ryo chat)
+  isRoomView: boolean; // Indicates if this is a room view (vs Mark chat)
   roomId?: string; // Needed for message deletion calls
-  isAdmin?: boolean; // Whether the current user has admin privileges (e.g. username === "ryo")
+  isAdmin?: boolean; // Whether the current user has admin privileges (e.g. username === "mark")
   username?: string; // Current client username (needed for delete request)
   onMessageDeleted?: (messageId: string) => void; // Callback when a message is deleted locally
   fontSize: number; // Add font size prop
@@ -605,8 +605,8 @@ function ChatMessagesContent({
         }
         
         // Check for aquarium token in chat room messages
-        // In chat rooms, messages from ryo don't have a role, just a username
-        if ((message.role === "human" || message.username === "ryo") && hasAquariumToken) {
+        // In chat rooms, messages from mark don't have a role, just a username
+        if ((message.role === "human" || message.username === "mark") && hasAquariumToken) {
           hasAquarium = true;
         }
 
@@ -709,10 +709,10 @@ function ChatMessagesContent({
               <span
                 className="max-w-[120px] inline-block overflow-hidden text-ellipsis whitespace-nowrap"
                 title={
-                  message.username || (message.role === "user" ? "You" : "Ryo")
+                  message.username || (message.role === "user" ? "You" : "Mark")
                 }
               >
-                {message.username || (message.role === "user" ? "You" : "Ryo")}
+                {message.username || (message.role === "user" ? "You" : "Mark")}
               </span>{" "}
               <span className="text-gray-400 select-text">
                 {message.createdAt ? (
@@ -1275,13 +1275,13 @@ function ChatMessagesContent({
           // Check if it's a rate limit error that's handled elsewhere
           const isRateLimitError =
             errorMessage === "Daily AI message limit reached." ||
-            errorMessage === "Set a username to continue chatting with Ryo.";
+            errorMessage === "Set a username to continue chatting with Mark.";
 
           // Don't show these errors in chat since they're handled by other UI
           if (isRateLimitError) return null;
 
           // Special handling for login message - render in gray like "Start a new conversation?"
-          if (errorMessage === "Login to continue chatting with Ryo.") {
+          if (errorMessage === "Login to continue chatting with Mark.") {
             return (
               <motion.div
                 layout="position"

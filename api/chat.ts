@@ -185,7 +185,7 @@ const generateDynamicSystemPrompt = (systemState?: SystemState) => {
     day: "numeric",
   });
 
-  const ryoTimeZone = "America/Los_Angeles";
+  const markTimeZone = "America/Los_Angeles";
 
   if (!systemState) return "";
 
@@ -194,7 +194,7 @@ const generateDynamicSystemPrompt = (systemState?: SystemState) => {
 Current User: ${systemState.username || "you"}
 
 ## TIME & LOCATION
-Ryo Time: ${timeString} on ${dateString} (${ryoTimeZone})`;
+Mark Time: ${timeString} on ${dateString} (${markTimeZone})`;
 
   if (systemState.userLocalTime) {
     prompt += `
@@ -352,7 +352,7 @@ ${index + 1}. ${instance.title}${unsavedMark} (ID: ${instance.instanceId})`;
     prompt += `\n\n<chat_room_reply_instructions>
 ## CHAT ROOM CONTEXT
 Room ID: ${systemState.chatRoomContext.roomId}
-Your Role: Respond as 'ryo' in this IRC-style chat room
+Your Role: Respond as 'mark' in this IRC-style chat room
 Response Style: Use extremely concise responses
 
 Recent Conversation:
@@ -549,7 +549,7 @@ export default async function handler(req: Request) {
     // ---------------------------
     // Rate-limit & auth checks
     // ---------------------------
-    // Validate authentication (all users, including "ryo", must present a valid token)
+    // Validate authentication (all users, including "mark", must present a valid token)
     const validationResult = await validateAuthToken(username, authToken);
 
     // If a username was provided but the token is missing/invalid, reject the request early
