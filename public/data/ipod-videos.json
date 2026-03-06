@@ -50,8 +50,8 @@
       "lyricOffset": -0
     },
     {
-      "id": "qgtkPKZ2OP",
-      "url": "https://www.youtube.com/watch?v=qgtkPKZ2OP",
+      "id": "qgtkPKZ2OPk",
+      "url": "https://www.youtube.com/watch?v=qgtkPKZ2OPk",
       "title": "The quiet things that no one ever knows",
       "artist": "Brand New",
       "lyricOffset": -0
@@ -69,7 +69,27 @@
       "title": "Ocean Avenue",
       "artist": "Yellowcard",
       "lyricOffset": -0
-    }
-
+    },
+    {
+      "id": "uhG-vLZrb-g",
+      "url": "https://www.youtube.com/watch?v=uhG-vLZrb-g",
+      "title": "Sugar we're going down",
+      "artist": "Fallout boy",
+      "lyricOffset": -0
+    },
+    {
+      "id": "oKsxPW6i3pM",
+      "url": "https://www.youtube.com/watch?v=oKsxPW6i3pM",
+      "title": "The middle",
+      "artist": "Jimmy eat world",
+      "lyricOffset": -0
+    },
+    {
+      "id": "CTAud5O7Qqk",
+      "url": "https://www.youtube.com/watch?v=CTAud5O7Qqk",
+      "title": "Float on",
+      "artist": "Modest mouse",
+      "lyricOffset": -0
+    },
   ]
 }
