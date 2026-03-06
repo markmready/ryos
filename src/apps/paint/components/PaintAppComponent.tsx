@@ -96,14 +96,19 @@ export const PaintAppComponent: React.FC<AppProps<PaintInitialData>> = ({
       setHasUnsavedChanges(false);
       setIsLoadingFile(false);
       setError(null);
-      // Do not revoke blob URL here: importImage loads it asynchronously in a second
-      // Image(); revoking now would invalidate the URL before the canvas can draw.
-      // Revocation is done in PaintCanvas.importImage after the draw completes.
+
+      console.log("[Paint] Revoking Blob URL after successful load:", blobUrl);
+      URL.revokeObjectURL(blobUrl);
+      if (lastConsumedBlobUrl.current === blobUrl) {
+        lastConsumedBlobUrl.current = null;
+      }
     };
 
     img.onerror = (error) => {
       console.error("Error loading image for import:", error, "URL:", blobUrl);
       setError("Failed to load image content.");
+
+      console.log("[Paint] Revoking Blob URL after load error:", blobUrl);
       URL.revokeObjectURL(blobUrl);
       if (lastConsumedBlobUrl.current === blobUrl) {
         lastConsumedBlobUrl.current = null;
