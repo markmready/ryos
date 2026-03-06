@@ -456,10 +456,10 @@ export function TerminalAppComponent({
   // Initialize with welcome message
   useEffect(() => {
     const currentTime = new Date().toLocaleTimeString();
-    const asciiArt = `     __  __ 
- _  /  \\(_  
-| \\/\\__/__) 
-  /         `;
+    const asciiArt = ` _ __  _   ___  ____  
+| '_ \\| | / _ \\/ ___| 
+| | | | |_| (_) \\___ \\ 
+|_| |_|_|\\___/|____/ `;
 
     setCommandHistory([
       {
@@ -2375,7 +2375,7 @@ export function TerminalAppComponent({
         item.output.length < 150 &&
         !item.output.startsWith("command not found") &&
         !item.output.includes("commands") &&
-        !item.output.includes("     __  __") &&
+        !item.output.includes(" _ __  _   ___  ____ ") &&
         !item.output.includes("ask mark anything.") &&
         // Don't animate ls command output
         !(item.command && item.command.trim().startsWith("ls"))
