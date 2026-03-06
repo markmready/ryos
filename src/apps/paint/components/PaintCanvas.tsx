@@ -597,16 +597,6 @@ export const PaintCanvas = forwardRef<PaintCanvasRef, PaintCanvasProps>(
             // Draw the image at the canvas dimensions (which are already scaled)
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             saveToHistory();
-
-            // Revoke blob URL after draw so Safari (and Chrome) don't hit an invalidated URL (fixes white screen)
-            if (typeof dataUrl === "string" && dataUrl.startsWith("blob:")) {
-              URL.revokeObjectURL(dataUrl);
-            }
-          };
-          img.onerror = () => {
-            if (typeof dataUrl === "string" && dataUrl.startsWith("blob:")) {
-              URL.revokeObjectURL(dataUrl);
-            }
           };
         },
         cut: () => {
